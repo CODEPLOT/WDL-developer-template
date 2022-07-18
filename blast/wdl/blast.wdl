@@ -1,17 +1,31 @@
 workflow blast {
 	String? blast_docker_override
-	String  blast_docker= select_first([blast_docker_override,"swr.cn-south-1.myhuaweicloud.com/cngbdb/blast:1.2"])
+	String  blast_docker= select_first([blast_docker_override,"swr.cn-north-4.myhuaweicloud.com/cngbdb/blast:1.2"])
 	File    queryfa
-	String  fname       = '/sfs/blastdb/2019_ncov/nucl/v6/ncov'
+	File?   custom_db
+	Boolean is_db = defined(custom_db)
+	String? custom_db_dbtype = 'nucl'
 	String  method      = 'blastn'
 	Int     outfmt      = 7
 	Float   evalue      = 10
 	String  Outfile     =basename(queryfa)+'.blast_result.txt'
 	Int     threads     = 8
+	String?  dbname 
+  if (is_db){
+      call makeblastdb{
+         input:
+		custom_db  = custom_db,
+		custom_db_dbtype = custom_db_dbtype,
+   }
+   String custom_db_path = makeblastdb.blastdb[0]+"/blastdb"
+}
+  #String?  dbpath_spe = "/sfs/blastdb/"+dbname
+	String  dbpath = select_first([custom_db_path,dbname])     
+	  
 	if ( method == 'blastp'){ 
 	  call runblastp{
 	    input:
-		Fname      = fname,
+		dbpath      = dbpath,
 		Queryfa    = queryfa,
 		docker     = blast_docker,
 		outfmt     = outfmt,
@@ -23,7 +37,7 @@ workflow blast {
 	if ( method == 'blastn'){
 	  call runblastn{
 	     input:
-		Fname      = fname,
+		dbpath      = dbpath,
 		Queryfa    = queryfa,
 		docker     = blast_docker,
 		outfmt     = outfmt,
@@ -35,7 +49,7 @@ workflow blast {
 	if ( method == 'blastx'){
 	  call runblastx{
 	    input:
-		Fname      = fname,
+		dbpath      = dbpath,
                 Queryfa    = queryfa,
                 docker     = blast_docker,
                 outfmt     = outfmt,
@@ -47,7 +61,7 @@ workflow blast {
 	if ( method == 'queryfa'){
 	  call runtblastn{
             input:
-		Fname      = fname,
+		dbpath      = dbpath,
                 Queryfa    = queryfa,
                 docker     = blast_docker,
                 outfmt     = outfmt,
@@ -59,7 +73,7 @@ workflow blast {
 	if ( method == 'tblastx'){
           call runtblastx{
             input:
-                Fname      = fname,
+                dbpath      = dbpath,
                 Queryfa    = queryfa,
                 docker     = blast_docker,
                 outfmt     = outfmt,
@@ -75,10 +89,30 @@ workflow blast {
 	}
 
 }
+task makeblastdb{
+	File custom_db
+	String custom_db_dbtype
+	String docker
+    command {
+    set -e 
+    pwd
+    # default blastdb as name
+    makeblastdb -in ${custom_db} -dbtype ${custom_db_dbtype} -out blastdb -title "blastdb" -parse_seqids -blastdb_version 5 
+   }
+    runtime{
+         docker : docker
+         cpu    : "2"
+         memory : "4G"
+  }
+    output {
+        Array[String] blastdb = read_lines(stdout())
+    }
+}
+
 task runblastn {
 	String  docker
 	File    Queryfa
-	String  Fname
+	String  dbpath
 	String  Outfile 
 	Int	threads
 #blast optional 
@@ -99,7 +133,7 @@ task runblastn {
 	Boolean lcase_masking   = false
     command {
 	set -e
-	blastn -db "${Fname}" \
+	blastn -db "${dbpath}" \
 		-show_gis \
 		-query ${Queryfa} \
 		-outfmt ${outfmt} \
@@ -130,7 +164,7 @@ task runblastn {
 task runblastp {
 	String  docker
 	File    Queryfa
-	String  Fname
+	String  dbpath
 #blast optional 
 	Int     outfmt
 	String  Outfile
@@ -149,7 +183,7 @@ task runblastp {
 	Boolean lcase_masking    = false
     command {
 	set -e
-	blastp -db "${Fname}" \
+	blastp -db "${dbpath}" \
 		-query ${Queryfa} \
 		-outfmt ${outfmt} \
 		-out	 ${Outfile} \
@@ -176,7 +210,7 @@ task runblastp {
 }
 task runblastx {
 	File   Queryfa
-	String Fname
+	String dbpath
 	Int    outfmt
 	Float  evalue
 	String Outfile
@@ -195,7 +229,7 @@ task runblastx {
 	Boolean lcase_masking    = false
     command {
 	set -e
-	blastx -db "${Fname}" \
+	blastx -db "${dbpath}" \
 		-query ${Queryfa} \
 		-outfmt ${outfmt} \
 		-out	 ${Outfile} \
@@ -223,7 +257,7 @@ task runblastx {
 }
 task runtblastn {
 	File   Queryfa
-	String Fname
+	String dbpath
 	Int    outfmt
 	Float  evalue
 	String Outfile         
@@ -242,7 +276,7 @@ task runtblastn {
         String? negative_taxids
     command {
 	set -e
-	tblastn -db "${Fname}" \
+	tblastn -db "${dbpath}" \
 		-query ${Queryfa} \
 		-outfmt ${outfmt} \
 		-out	${Outfile} \
@@ -270,7 +304,7 @@ task runtblastn {
 }
 task runtblastx {
 	File   Queryfa
-	String Fname
+	String dbpath
 	Int    outfmt
 	String Outfile   
 	String threads        
@@ -286,7 +320,7 @@ task runtblastx {
 	Int?    max_hsps
     command {
 	set -e
-	tblastx -db "${Fname}" \
+	tblastx -db "${dbpath}" \
 		-query ${Queryfa} \
 		-outfmt ${outfmt} \
 		-out	 ${Outfile} \
