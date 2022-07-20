@@ -1,4 +1,4 @@
-# 简介s
+# 简介
 BLAST(Basic Local Alignment Search Tool)是生物序列相似性比较及区域查找的分析工具。可用于推断序列之间的功能和进化关系，以及帮助鉴定基因家族的成员。
 该BLAST 工作流程采用 ncbi-BLAST+ 2.13.0 
 其主要包括以子程序：
