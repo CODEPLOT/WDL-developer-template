@@ -1,0 +1,1 @@
+[{"task_name": "scanpy", "attr_name": "cluster", "type": "File", "required": false, "value": ""}, {"task_name": "scanpy", "attr_name": "fina_h5ad", "type": "File", "required": false, "value": ""}, {"task_name": "scanpy", "attr_name": "metadata", "type": "File", "required": false, "value": ""}]
