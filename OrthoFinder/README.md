@@ -3,7 +3,7 @@
 
 `OrthoFinder`是一个快速，准确和全面的比较基因组学分析工具。它找到正交群(orthogroups) 和 直系同源(orthologs)，推断所有正交群的根基因树，并识别这些基因树中所有的基因复制事件。它还为被分析的物种推断出一个有根的物种树，并将基因复制事件从基因树映射到物种树的分支。OrthoFinder还提供了比较基因组分析的全面统计。
 
-[!image](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13059-019-1832-y/MediaObjects/13059_2019_1832_Fig2_HTML.png)
+![image](https://media.springernature.com/full/springer-static/image/art%3A10.1186%2Fs13059-019-1832-y/MediaObjects/13059_2019_1832_Fig2_HTML.png)
 
 
 本工作流采用 `OrthoFinder 2.4.1`版本，用户输入输入文件既可以得到结果。

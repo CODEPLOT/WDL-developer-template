@@ -5,7 +5,7 @@
 ![images](https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/nar/49/9/10.1093_nar_gkab043/1/gkab043gra1.jpeg?Expires=1661418702&Signature=PP7Edq0eOarDjO5H22Mka8CUkTX839me9Ajp4~8k7T1mRjXtmcjA6KsSEnQC-TTI~gpn9sj3ZHtuB1RAqQiKLgudeaEB6My~2BYkse0VcEEOpgur7do5YMkaQcldcg4eAKYDmYE7XrH6kqWi4R9-~SPpn9PNKXlyWZC8BHWuNj~XMwvz9Abmsekld2VeUB7XSNDfXsuZYBKWUQzb6VxPfG83tT4mF42jQe~D~Ss79wM0AtZxvuu9DkZZPUkrn9N3A0ir1OYocXPISIeo~kC6Lt74-IdP2e4WHTaZzqYiFsExhhcS0FG3LVsgAOBy~owUks4eGJ77hoaTeSHx5d5Ukw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
 
 
-本工作流使用 `SPOTlight` v 0.1.0 版本工具，用户上传单细胞包含注释的RDS文件注释空间转录组数据
+本工作流使用 `SPOTlight` v 0.1.0 版本工具，用户上传单细胞包含注释的RDS文件和空间转录组数据(RDS格式).
 # 联系我们
 该工具由国家基因库团队提供。如有任何问题或疑虑，请联系CNGBdb@cngb.org
 
