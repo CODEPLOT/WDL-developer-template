@@ -1,0 +1,1 @@
+[{"type": "File", "task_name": "run_spotlight.spotlight", "attr_name": "result", "required": false, "value": "", "description_en": "output csv file", "description_zh": "输出表格文件"}, {"type": "File", "task_name": "run_spotlight.spotlight", "attr_name": "prop_heatmap", "required": false, "value": "", "description_en": "output png", "description_zh": "输出i图片文件"}]
