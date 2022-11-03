@@ -5,10 +5,11 @@
 
 ![image](https://db.cngb.org/cdcp/img/analysis.e4a092e9.png)
  
-本工作流是`single_cell_scanpy`工作流中单个步骤如上图,你可以讲前一步的步骤输出后H5AD作为输入，单独进行步骤调试。
+本工作流是`single_cell_scanpy`工作流中单个步骤如上图,你可以将前一步的步骤输出后的H5AD文件作为该步骤的输入，单独进行步骤调试。
 
 
 详细参数说明见下文input介绍，
+必填参数：project_name，anndata ，groupby
 
 
 # 联系我们
