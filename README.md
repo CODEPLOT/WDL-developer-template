@@ -26,7 +26,8 @@ java -jar cromwell-xx.jar run demo.wdl -i demo.json
 
 4.准备发布工具元信息
 — 流程输入参数描述文件
-|  参数名称   | 参数名称  |英文描述 | 中文描述 | 是否必要参数 |默认值|取值范围
+
+|  参数名称   | 参数名称  |英文描述 | 中文描述 | 是否必要参数 |默认值|取值范围|
 |  ----  | ----  |
-| 单元格  | 单元格 |
-| 单元格  | 单元格 |
+| blast.runtblastx  | taxids | Restrict search of database to include only the specified taxonomy IDs(multiple IDs delimited by ',')| true| 3600||
+| blast  | method | Blast component :blastn blastp blastx tblastn tblasx| Blast 技术| 是| blastn|[blastn,blastx,blastp,tblastn]|
