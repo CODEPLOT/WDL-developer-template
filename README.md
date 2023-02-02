@@ -13,7 +13,8 @@
    禁止在WDL中使用绝对路径文件，CODEPLOT中WDL是在容器内运行，无固定化路径，文件引入，请使用 File 类型进行定义。
  ###WDL 开发流程
  
-![未命名文件 (1)](https://user-images.githubusercontent.com/46242303/216245900-e22285a1-0144-43ef-9c20-7a3388b257c3.png)
+
+![image](https://user-images.githubusercontent.com/46242303/216283874-139a5368-313c-49a2-b7bd-b745f2fd8219.png)
 
 1.开发WDL流程
 
@@ -24,10 +25,14 @@
 ```shell 
 java -jar cromwell-xx.jar run demo.wdl -i demo.json
 
+```
 4.准备发布工具元信息
 — 流程输入参数描述文件
 
 |  参数名称   | 参数名称  |英文描述 | 中文描述 | 是否必要参数 |默认值|取值范围|
-|  ----  | ----  |
+|  ----  | ----  | ----  | ----  | ----  | ----  | ----  | 
 | blast.runtblastx  | taxids | Restrict search of database to include only the specified taxonomy IDs(multiple IDs delimited by ',')| true| 3600||
 | blast  | method | Blast component :blastn blastp blastx tblastn tblasx| Blast 技术| 是| blastn|[blastn,blastx,blastp,tblastn]|
+
+--工具元信息文件
+
