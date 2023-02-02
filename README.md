@@ -20,8 +20,14 @@
 
 2.制作流程运行环境-Docker镜像
 
-3.基于本地测试WDL流程. [cromwell软件下载](https://github.com/broadinstitute/cromwell/tags)
+3.基于本地测试WDL流程. [cromwell及womtool软件下载]([https://github.com/broadinstitute/cromwell/tags](https://github.com/broadinstitute/cromwell/releases/))
+根据wdl输出 示例输入文件：demo.json
+ 示例：
+```shell 
+java -jar /mnt/sdc/workdir/womtool.jar inputs demo.wdl
 
+```
+运行WDL 示例：
 ```shell 
 java -jar cromwell-xx.jar run demo.wdl -i demo.json
 
