@@ -9,5 +9,6 @@
  ## WDL开发说明
  WDL 语法简介 请看说明 https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md#types
  我们推荐开发者尽量使用 WDL version 1.0语法规则进行相应WDL 开发：
- ### 注意事项：
-   CODEPLOT中WDL是在容器内运行，无固定化路径，文件引入，请使用 File 类型进行定义。
+ ### WDL开发注意事项：
+   禁止在WDL中使用绝对路径文件，CODEPLOT中WDL是在容器内运行，无固定化路径，文件引入，请使用 File 类型进行定义。
+ ###WDL 开发流程
