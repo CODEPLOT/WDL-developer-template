@@ -24,7 +24,7 @@
 根据wdl输出 示例输入文件：demo.json
  示例：
 ```shell 
-java -jar /mnt/sdc/workdir/womtool.jar inputs demo.wdl
+java -jar /womtool.jar inputs demo.wdl
 
 ```
 运行WDL 示例：
